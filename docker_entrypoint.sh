@@ -36,4 +36,10 @@ export LNCLI_RPCSERVER="lnd.embassy:10009"       #the LND gRPC address, eg. loca
 export LNCLI_TLSCERTPATH="/mnt/lnd/tls.cert"    #the location where LND's tls.cert file can be found (used with the LND backend)
 export LNCLI_MACAROONPATH="/mnt/lnd/admin.macaroon" #the location where LND's admin.macaroon file can be found (used with the LND backend)
 
+
+mkdir -p /data/bin
+echo '#!/bin/bash' > /data/setpath
+echo 'export PATH=/data/bin:$PATH' >> /data/setpath
+chmod a+x /data/setpath
+
 exec /usr/bin/gotty --port 8080 --permit-write --reconnect /bin/bash
